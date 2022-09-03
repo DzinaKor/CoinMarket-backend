@@ -1,4 +1,4 @@
-import { App } from './app';
+import { App } from './App';
 const config = require( './config.json' );
 
 let app = new App();
