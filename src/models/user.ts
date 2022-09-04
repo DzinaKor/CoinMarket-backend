@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import { typeDBUser, typeUser } from '../types';
 
-export class User {
-    
+export default class User {
+
     public id: number;
     public name: string;
     public pass: string;
@@ -14,9 +14,10 @@ export class User {
     public portfolio: Map<string, string>;
 
     constructor(id: number) {
-        if(id > 0) {
+        if (id > 0) {
             this.id = id;
-        }else{;
+        } else {
+            ;
             this.id = Date.now();
         }
         this.name = "";
@@ -40,7 +41,7 @@ export class User {
         const wList: Array<string> = this.watchlist;
         const port: Map<string, string> = this.portfolio;
 
-        return {id, name, pass, email, lang, curr, avatar, wList, port};
+        return { id, name, pass, email, lang, curr, avatar, wList, port };
     }
 
     nextId() {
@@ -48,7 +49,7 @@ export class User {
     }
 
     checkUserPass(pass: string): boolean {
-        if(pass === this.pass) {
+        if (pass === this.pass) {
             return true;
         }
         return false;
@@ -65,7 +66,7 @@ export class User {
         this.portfolio = new Map();
     }
 
-    toJson ():typeUser {
+    toJson(): typeUser {
         return {
             id: this.id,
             email: this.email,
