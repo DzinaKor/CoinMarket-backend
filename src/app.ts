@@ -22,6 +22,7 @@ export class App {
         //    methods: "GET, PUT, POST"
         //}
         this.expressApp.use(cors());
+        this.expressApp.options('*', cors());
         //this.expressApp.use(cors(corsOptions));
 
         // , {useUnifiedTopology: true, useNewUrlParser: true}
