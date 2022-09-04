@@ -21,9 +21,15 @@ export class App {
         //   optionsSuccessStatus: 200,
         //    methods: "GET, PUT, POST"
         //}
-        this.expressApp.use(cors());
-        this.expressApp.options('*', cors());
-        //this.expressApp.use(cors(corsOptions));
+        const corsOptions = {
+            "origin": "*",
+            "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+            "preflightContinue": false,
+            "optionsSuccessStatus": 204
+        }
+        //this.expressApp.use(cors());
+        //this.expressApp.options('*', cors());
+        this.expressApp.use(cors(corsOptions));
 
         // , {useUnifiedTopology: true, useNewUrlParser: true}
         mongoose.connect(this.dbURL);
