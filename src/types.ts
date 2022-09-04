@@ -7,6 +7,7 @@ export type typeUser = {
     currency: string,
     avatar: string
 }
+
 export type typeDBUser = {
     id: number,
     name: string,

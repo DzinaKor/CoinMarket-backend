@@ -11,6 +11,7 @@ export class User {
     public curr: string;
     public avatar: string;
     public watchlist: Array<string>;
+    public portfolio: Map<string, string>;
 
     constructor(id: number) {
         if(id > 0) {
@@ -25,6 +26,7 @@ export class User {
         this.curr = "";
         this.avatar = "ava1";
         this.watchlist = [];
+        this.portfolio = new Map();
     }
 
     getDbModelVars() {
@@ -36,8 +38,9 @@ export class User {
         const curr: string = this.curr;
         const avatar: string = this.avatar;
         const wList: Array<string> = this.watchlist;
+        const port: Map<string, string> = this.portfolio;
 
-        return {id, name, pass, email, lang, curr, avatar, wList};
+        return {id, name, pass, email, lang, curr, avatar, wList, port};
     }
 
     nextId() {
@@ -59,6 +62,7 @@ export class User {
         this.curr = newData.curr;
         this.avatar = newData.avatar;
         this.watchlist = [];
+        this.portfolio = new Map();
     }
 
     toJson ():typeUser {

@@ -2,7 +2,7 @@ import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import { User } from '../Models/User';
-import { typeDBUser, typeUser } from '../types';
+import { typeDBUser } from '../types';
 
 export class UserQuery {
     public userModel;
@@ -153,6 +153,40 @@ export class UserQuery {
         return false;
     }
 
+    async getPortfolio(req: Request, res: Response): Promise<boolean> {
+        const doc = await this.userModel.findOne({ email: req.query.email }).exec();
+        if(doc) {
+            const port: Map<string, string> = doc?.get('portfolio', Map);
+            console.log("put portfolio "+req.query.email);
+            await res.json(port);
+            return true;
+        } else {
+            console.log("user not found!!! "+req.query.email);
+            await res.status(400).json({"answer": "user not found"});
+            return false;
+        }
+    }
+
+    async putPortfolio(req: Request, res: Response): Promise<boolean> {
+        const cUser: User = new User(-1);
+        const findDoc = await this.userModel.findOne({ email: req.query.email }).exec();
+        if(!findDoc?.$isEmpty) {
+            console.log("user not found!!! "+req.query.email);
+            await res.status(400).json({"answer": "user not found"});
+        } else {
+            const portfolio: Map<string, string> = JSON.parse(String(req.query.portfolio));
+            await this.userModel.findOneAndUpdate({email: req.query.email}, {portfolio: portfolio}).then((doc) => {
+                doc?.save();
+            });
+            const doc = await this.userModel.findOne({ email: req.query.email }).exec();
+            const watch: Map<string, string> = doc?.get('portfolio', Map);
+            console.log("put portfolio "+req.query.email);
+            await res.json(watch);
+            return true;
+        };
+        return false;
+    }
+
     getDbModelUser(mod: string) {
         return mongoose.connection.model(mod, this.newShemaUser());
     }
@@ -166,7 +200,8 @@ export class UserQuery {
             lang: {type: String, required: false},
             curr: {type: String, required: false},
             avatar: {type: String, required: false},
-            watchlist: {type: Array<String>, required: false}
+            watchlist: {type: Array<String>, required: false},
+            portfolio: {type: Map, default: {}, required: false}
         });
     }	
 }
