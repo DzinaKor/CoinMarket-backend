@@ -1,4 +1,5 @@
-import { App } from './App';
+// import { App } from './App';
+const App = require('./App');
 const config = require('./config.json');
 
 let app = new App();
