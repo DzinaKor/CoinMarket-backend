@@ -42,15 +42,15 @@ export class App {
     attachRoutes() {
         //let app = this.expressApp;
         let jsonParser = bodyParser.json();
-        //this.expressApp.get('/user', this.getUser.bind(this));
-        //this.expressApp.put('/user', this.putUser.bind(this));
+        this.expressApp.get('/user', this.getUser.bind(this));
+        this.expressApp.put('/user', this.putUser.bind(this));
         this.expressApp.post('/user', jsonParser, this.postUser.bind(this));
 
-        //this.expressApp.get('/watchlist', this.getWatchList.bind(this));
-        //this.expressApp.put('/watchlist', this.putWatchList.bind(this));
+        this.expressApp.get('/watchlist', this.getWatchList.bind(this));
+        this.expressApp.put('/watchlist', this.putWatchList.bind(this));
 
-        //this.expressApp.get('/portfolio', this.getPortfolio.bind(this));
-        //this.expressApp.put('/portfolio', this.putPortfolio.bind(this));
+        this.expressApp.get('/portfolio', this.getPortfolio.bind(this));
+        this.expressApp.put('/portfolio', this.putPortfolio.bind(this));
     }
 
     getUser(req: Request, res: Response) {
