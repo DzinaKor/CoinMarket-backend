@@ -1,7 +1,8 @@
 import express, { Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import { User } from '../Models/User';
+//import { User } from '../Models/User';
+const User = require('../Models/User');
 import { typeDBUser } from '../types';
 
 export class UserQuery {
