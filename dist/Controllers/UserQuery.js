@@ -14,7 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserQuery = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
-const User_1 = require("../Models/User");
+const User_ts_1 = require("../Models/User.ts");
 class UserQuery {
     constructor(dbURL) {
         // mongoose.connect(dbURL);
@@ -22,7 +22,7 @@ class UserQuery {
     }
     getUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cUser = new User_1.User(-1);
+            const cUser = new User_ts_1.User(-1);
             let response = cUser.toJson();
             const findDoc = yield this.userModel.findOne({ email: req.query.email }).exec();
             if (!(findDoc === null || findDoc === void 0 ? void 0 : findDoc.$isEmpty)) {
@@ -49,7 +49,7 @@ class UserQuery {
     }
     updateUser(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cUser = new User_1.User(-1);
+            const cUser = new User_ts_1.User(-1);
             let response = cUser.toJson();
             const findDoc = yield this.userModel.findOne({ email: req.query.email }).exec();
             if (!(findDoc === null || findDoc === void 0 ? void 0 : findDoc.$isEmpty)) {
@@ -95,7 +95,7 @@ class UserQuery {
         return __awaiter(this, void 0, void 0, function* () {
             let newId = (req.body.id > 0) ? req.body.id : -1;
             console.log("post user: neew id is " + newId);
-            const cUser = new User_1.User(newId);
+            const cUser = new User_ts_1.User(newId);
             cUser.email = req.body.email;
             cUser.pass = req.body.pass;
             if (req.body.name !== undefined && req.body.name !== "") {
@@ -152,7 +152,7 @@ class UserQuery {
     }
     putWatchList(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cUser = new User_1.User(-1);
+            const cUser = new User_ts_1.User(-1);
             const findDoc = yield this.userModel.findOne({ email: req.query.email }).exec();
             if (!(findDoc === null || findDoc === void 0 ? void 0 : findDoc.$isEmpty)) {
                 console.log("put user not found!!! " + req.query.email);
@@ -191,7 +191,7 @@ class UserQuery {
     }
     putPortfolio(req, res) {
         return __awaiter(this, void 0, void 0, function* () {
-            const cUser = new User_1.User(-1);
+            const cUser = new User_ts_1.User(-1);
             const findDoc = yield this.userModel.findOne({ email: req.query.email }).exec();
             if (!(findDoc === null || findDoc === void 0 ? void 0 : findDoc.$isEmpty)) {
                 console.log("user not found!!! " + req.query.email);

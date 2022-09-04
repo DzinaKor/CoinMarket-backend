@@ -10,7 +10,7 @@ const mongoose_1 = __importDefault(require("mongoose"));
 // import caors from 'cors';
 const cors = require('cors');
 const config = require('./config.json');
-const UserQuery_1 = require("./Controllers/UserQuery");
+const UserQuery_ts_1 = require("./Controllers/UserQuery.ts");
 class App {
     constructor() {
         //    this.dbURL = "mongodb+srv://user:user@cluster0.4jxafye.mongodb.net/?retryWrites=true&w=majority";
@@ -25,7 +25,7 @@ class App {
         // this.expressApp.use(cors(corsOptions));
         // , {useUnifiedTopology: true, useNewUrlParser: true}
         mongoose_1.default.connect(this.dbURL);
-        this.userQ = new UserQuery_1.UserQuery(this.dbURL);
+        this.userQ = new UserQuery_ts_1.UserQuery(this.dbURL);
         this.attachRoutes();
     }
     attachRoutes() {
