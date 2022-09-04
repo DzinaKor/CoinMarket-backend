@@ -21,7 +21,6 @@ export class App {
             optionsSuccessStatus: 200,
             methods: "GET, PUT, POST"
         }
-        this.expressApp.use.options('*', cors());
         //this.expressApp.use(cors());
         this.expressApp.use(cors(corsOptions));
 
