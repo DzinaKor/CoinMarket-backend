@@ -21,15 +21,15 @@ export class App {
         //   optionsSuccessStatus: 200,
         //    methods: "GET, PUT, POST"
         //}
-        const corsOptions = {
-            "origin": "*",
-            "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-            "preflightContinue": false,
-            "optionsSuccessStatus": 204
-        }
-        //this.expressApp.use(cors());
+        // const corsOptions = {
+        //     "origin": "*",
+        //     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
+        //     "preflightContinue": false,
+        //     "optionsSuccessStatus": 204
+        // }
+        this.expressApp.use(cors());
         //this.expressApp.options('*', cors());
-        this.expressApp.use(cors(corsOptions));
+        //this.expressApp.use(cors(corsOptions));
 
         // , {useUnifiedTopology: true, useNewUrlParser: true}
         mongoose.connect(this.dbURL);
@@ -42,9 +42,9 @@ export class App {
     attachRoutes() {
         //let app = this.expressApp;
         let jsonParser = bodyParser.json();
-        this.expressApp.get('/user', this.getUser.bind(this));
+        //this.expressApp.get('/user', this.getUser.bind(this));
         this.expressApp.put('/user', this.putUser.bind(this));
-        this.expressApp.post('/user', jsonParser, this.postUser.bind(this));
+        //this.expressApp.post('/user', jsonParser, this.postUser.bind(this));
 
         this.expressApp.get('/watchlist', this.getWatchList.bind(this));
         this.expressApp.put('/watchlist', this.putWatchList.bind(this));
