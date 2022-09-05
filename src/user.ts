@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { typeDBUser, typeUser } from './types';
 
 export default class User {
