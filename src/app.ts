@@ -1,9 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-// import caors from 'cors';
 const cors = require('cors');
-// const config = require( './config.json' );
 import { UserQuery } from './userquery';
 
 export class App {
@@ -23,7 +21,6 @@ export class App {
         this.expressApp.use(cors());
         // this.expressApp.use(cors(corsOptions));
 
-        // , {useUnifiedTopology: true, useNewUrlParser: true}
         mongoose.connect(this.dbURL);
 
         this.userQ = new UserQuery(this.dbURL);
@@ -32,7 +29,6 @@ export class App {
     }
 
     attachRoutes() {
-        //let app = this.expressApp;
         let jsonParser = bodyParser.json();
         this.expressApp.get('/user', this.getUser.bind(this));
         this.expressApp.put('/user', this.putUser.bind(this));
@@ -61,9 +57,6 @@ export class App {
             res.status(400).json({ "answer": "bad request" });
         } else {
             this.userQ.updateUser(req, res);
-            // .then((response: Object) => {
-            // res.json(response);
-            // });
         }
     }
 
@@ -73,8 +66,6 @@ export class App {
             res.status(400).json({ "answer": "bad request" });
         } else {
             this.userQ.createUser(req, res);
-            // let response: Object = this.userQ.createUser(req);
-            // res.json(response);
         }
 
     }
