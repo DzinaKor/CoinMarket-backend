@@ -1,8 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const App_1 = require("./App");
+const app_1 = require("./app");
 // const config = require( './config.json' );
-let app = new App_1.App();
-app.expressApp.listen(8000, "0.0.0.0", function () {
-    console.log(`App listening at port ${8000}`);
+let app = new app_1.App();
+app.expressApp.listen(Number(process.env.PORT) || 3000, "0.0.0.0", function () {
+    console.log(`App listening at port ${3000}`);
 });
