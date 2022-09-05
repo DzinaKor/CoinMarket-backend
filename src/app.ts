@@ -11,7 +11,7 @@ export class App {
     public userQ: UserQuery;
 
     constructor() {
-        this.dbURL = "mongodb+srv://user:user@cluster0.4jxafye.mongodb.net/?retryWrites=true&w=majority";
+        this.dbURL = "mongodb+srv://user:user@cluster0.jijfxzy.mongodb.net/?retryWrites=true&w=majority";
         this.expressApp = express();
         // const corsOptions = {
         //     origin: 'http://127.0.0.1:5500',
