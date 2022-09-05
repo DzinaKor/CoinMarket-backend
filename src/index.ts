@@ -1,8 +1,7 @@
-// import { App } from './App';
-const App = require('./App');
-const config = require('./config.json');
+import { App } from './App';
+// const config = require( './config.json' );
 
 let app = new App();
-app.expressApp.listen(config.port, config.host, function () {
-    console.log(`App listening at port ${config.port}`);
+app.expressApp.listen(8000, "0.0.0.0", function() {
+    console.log(`App listening at port ${8000}`);
 });

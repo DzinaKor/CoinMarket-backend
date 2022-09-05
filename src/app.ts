@@ -3,33 +3,26 @@ import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 // import caors from 'cors';
 const cors = require('cors');
-const config = require('./config.json');
-import { UserQuery } from './Controllers/UserQuery';
+// const config = require( './config.json' );
+import { UserQuery } from './UserQuery';
 
 export class App {
     public expressApp: Application;
     public dbURL: string;
-
+    
     public userQ: UserQuery;
 
     constructor() {
-        //    this.dbURL = "mongodb+srv://user:user@cluster0.4jxafye.mongodb.net/?retryWrites=true&w=majority";
+    //    this.dbURL = "mongodb+srv://user:user@cluster0.4jxafye.mongodb.net/?retryWrites=true&w=majority";
         this.dbURL = "mongodb+srv://user:user@cluster0.jijfxzy.mongodb.net/?retryWrites=true&w=majority";
         this.expressApp = express();
         // const corsOptions = {
-        //    origin: '*',
-        //   optionsSuccessStatus: 200,
-        //    methods: "GET, PUT, POST"
-        //}
-        // const corsOptions = {
-        //     "origin": "*",
-        //     "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
-        //     "preflightContinue": false,
-        //     "optionsSuccessStatus": 204
+        //     origin: 'http://127.0.0.1:5500',
+        //     optionsSuccessStatus: 200,
+        //     methods: "GET, PUT, POST"
         // }
         this.expressApp.use(cors());
-        //this.expressApp.options('*', cors());
-        //this.expressApp.use(cors(corsOptions));
+        // this.expressApp.use(cors(corsOptions));
 
         // , {useUnifiedTopology: true, useNewUrlParser: true}
         mongoose.connect(this.dbURL);
@@ -39,7 +32,7 @@ export class App {
         this.attachRoutes();
     }
 
-    attachRoutes() {
+    attachRoutes () {
         //let app = this.expressApp;
         let jsonParser = bodyParser.json();
         this.expressApp.get('/user', this.getUser.bind(this));
@@ -56,8 +49,8 @@ export class App {
     getUser(req: Request, res: Response) {
         if (!req.query.email || !req.query.pass) {
             console.log("Bad request");
-            res.status(400).json({ "answer": "bad request" });
-        } else {
+            res.status(400).json({"answer": "bad request"});
+        }else{
             this.userQ.getUser(req, res);
         }
     }
@@ -66,11 +59,11 @@ export class App {
     putUser(req: Request, res: Response) {
         if (!req.query.email) {
             console.log("Bad request");
-            res.status(400).json({ "answer": "bad request" });
-        } else {
+            res.status(400).json({"answer": "bad request"});
+        }else{
             this.userQ.updateUser(req, res);
             // .then((response: Object) => {
-            // res.json(response);
+                // res.json(response);
             // });
         }
     }
@@ -78,8 +71,8 @@ export class App {
     postUser(req: Request, res: Response) {
         if (!req.body.email || !req.body.pass) {
             console.log("Bad request ");
-            res.status(400).json({ "answer": "bad request" });
-        } else {
+            res.status(400).json({"answer": "bad request"});
+        }else{
             this.userQ.createUser(req, res);
             // let response: Object = this.userQ.createUser(req);
             // res.json(response);
@@ -90,8 +83,8 @@ export class App {
     getWatchList(req: Request, res: Response) {
         if (!req.query.email) {
             console.log("Bad request");
-            res.status(400).json({ "answer": "bad request" });
-        } else {
+            res.status(400).json({"answer": "bad request"});
+        }else{
             this.userQ.getWatchList(req, res);
         }
     }
@@ -99,8 +92,8 @@ export class App {
     putWatchList(req: Request, res: Response) {
         if (!req.query.email) {
             console.log("Bad request");
-            res.status(400).json({ "answer": "bad request" });
-        } else {
+            res.status(400).json({"answer": "bad request"});
+        }else{
             this.userQ.putWatchList(req, res);
         }
     }
@@ -108,8 +101,8 @@ export class App {
     getPortfolio(req: Request, res: Response) {
         if (!req.query.email) {
             console.log("Bad request");
-            res.status(400).json({ "answer": "bad request" });
-        } else {
+            res.status(400).json({"answer": "bad request"});
+        }else{
             this.userQ.getPortfolio(req, res);
         }
     }
@@ -117,9 +110,9 @@ export class App {
     putPortfolio(req: Request, res: Response) {
         if (!req.query.email) {
             console.log("Bad request");
-            res.status(400).json({ "answer": "bad request" });
-        } else {
+            res.status(400).json({"answer": "bad request"});
+        }else{
             this.userQ.putPortfolio(req, res);
         }
-    }
+    }    
 }
